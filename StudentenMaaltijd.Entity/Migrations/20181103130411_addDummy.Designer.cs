@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentenMaaltijd.Entity.Repository.DbContext;
 
 namespace StudentenMaaltijd.Entity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181103130411_addDummy")]
+    partial class addDummy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,12 +40,6 @@ namespace StudentenMaaltijd.Entity.Migrations
                     b.HasKey("MealId");
 
                     b.ToTable("Meals");
-
-                    b.HasData(
-                        new { MealId = 1, Description = "Super lekkere Chili", MaxAllowedGuests = 6, MealName = "Chili con carne", PreperationTime = new DateTime(2018, 11, 3, 7, 56, 35, 686, DateTimeKind.Local), Price = 7.00m },
-                        new { MealId = 2, Description = "Super lekkere spaghetti", MaxAllowedGuests = 6, MealName = "Spaghetti", PreperationTime = new DateTime(2018, 11, 3, 7, 56, 35, 687, DateTimeKind.Local), Price = 2.00m },
-                        new { MealId = 3, Description = "Super lekkere stampot", MaxAllowedGuests = 6, MealName = "Stampot", PreperationTime = new DateTime(2018, 11, 3, 7, 56, 35, 687, DateTimeKind.Local), Price = 5.00m }
-                    );
                 });
 
             modelBuilder.Entity("StudentenMaaltijd.Entity.Entity.MealStudent", b =>
@@ -59,13 +55,6 @@ namespace StudentenMaaltijd.Entity.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("MealStudents");
-
-                    b.HasData(
-                        new { MealId = 3, StudentId = 3, Role = "kok" },
-                        new { MealId = 3, StudentId = 1, Role = "gast" },
-                        new { MealId = 3, StudentId = 2, Role = "gast" },
-                        new { MealId = 3, StudentId = 4, Role = "gast" }
-                    );
                 });
 
             modelBuilder.Entity("StudentenMaaltijd.Entity.Entity.Student", b =>
@@ -83,14 +72,6 @@ namespace StudentenMaaltijd.Entity.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new { StudentId = 1, Email = "wessel.vrolijks@gmail.com", PhoneNumber = "0681839791", StudentName = "Wessel Vrolijks" },
-                        new { StudentId = 2, Email = "rvgoor@gmail.com", PhoneNumber = "0612345678", StudentName = "Ruben van Goor" },
-                        new { StudentId = 3, Email = "mvbergen@gmail.com", PhoneNumber = "06456925", StudentName = "Milan van Bergen" },
-                        new { StudentId = 4, Email = "svwichen@gmail.com", PhoneNumber = "0642376589", StudentName = "Stijn van Wichen" },
-                        new { StudentId = 5, Email = "ddgroot@gmail.com", PhoneNumber = "0612078506", StudentName = "Derk de Groot" }
-                    );
                 });
 
             modelBuilder.Entity("StudentenMaaltijd.Entity.Entity.MealStudent", b =>
