@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StudentenMaaltijd.Web.Models;
+using StudentenMaaltijd.Web.Repository;
+using StudentenMaaltijd.Web.Repository.DbContext;
+using StudentenMaaltijd.Web.Repository.EFRepository;
 
-namespace WebApplication1
+namespace StudentenMaaltijd.Web
 {
     public class Startup
     {
@@ -31,6 +31,9 @@ namespace WebApplication1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<ApplicationDbContext>();
+            services.AddScoped<IStudentRepository, EFStudentRepository>();
+            services.AddScoped<IMealRepository, EFMealRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

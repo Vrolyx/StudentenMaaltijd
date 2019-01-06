@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Models;
+using StudentenMaaltijd.Web.Models.ViewModels;
+using StudentenMaaltijd.Web.Repository;
 
-namespace WebApplication1.Controllers
+namespace StudentenMaaltijd.Web.Controllers
 {
     public class HomeController : Controller
     {
+        
+        private IStudentRepository repo;
+        
         public IActionResult Index()
         {
             return View();

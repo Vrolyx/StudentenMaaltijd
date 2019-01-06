@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentenMaaltijd.Web", "WebApplication1\StudentenMaaltijd.Web.csproj", "{3C7C5D9B-E478-404F-9A85-7576BCA2109F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentenMaaltijd.Entity", "StudentenMaaltijd.Entity\StudentenMaaltijd.Entity.csproj", "{841E2686-5A21-4DA7-81DA-2A719D8407F8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{3C7C5D9B-E478-404F-9A85-7576BCA2109F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C7C5D9B-E478-404F-9A85-7576BCA2109F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C7C5D9B-E478-404F-9A85-7576BCA2109F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{841E2686-5A21-4DA7-81DA-2A719D8407F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{841E2686-5A21-4DA7-81DA-2A719D8407F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{841E2686-5A21-4DA7-81DA-2A719D8407F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{841E2686-5A21-4DA7-81DA-2A719D8407F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
