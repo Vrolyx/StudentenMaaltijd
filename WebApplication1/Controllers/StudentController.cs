@@ -4,33 +4,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StudentenMaaltijd.Web.Models;
-using StudentenMaaltijd.Web.Repository;
+using StudentenMaaltijd.Entity.Entity;
+using StudentenMaaltijd.Entity.Repository;
 
 namespace StudentenMaaltijd.Web.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class StudentController : ControllerBase
+    public class StudentController : Controller
     {
-        private readonly IStudentRepository _repository;
+        private IStudentRepository repository;
 
-        public StudentController(IStudentRepository repository)
+        public StudentController(IStudentRepository repoService)
         {
-            _repository = repository;
+            repository = repoService;
         }
 
-        [HttpGet]
-        public IEnumerable<Student> GetStudentItems()
+        public ViewResult Index() =>
+            View(repository.GetStudents());
+
+        public ActionResult Create()
         {
-            return _repository.GetStudents();
+            return View();
         }
 
-        [HttpGet("{id}")]
-        public Student GetMealById(int id)
+        [HttpPost]
+        public ActionResult Create(IFormCollection collection)
         {
-            return _repository.GetStudent(id);
+            try
+            {
+                var student = new Student(){ Email = collection["Email"], PhoneNumber = collection["PhoneNumber"], StudentName = collection["StudentName"]};
+                repository.AddStudent(student);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
+
     }
 }

@@ -8,9 +8,5 @@ namespace StudentenMaaltijd.Entity.Repository
         IEnumerable<Meal> GetMeals();
         Meal GetMeal(int id);
         void AddMeal(Meal meal);
-        void EditMeal(Meal meal);
-        void Delete(int id);
-        IEnumerable<Meal> GetMealsWithinTwoWeeks();
-        IEnumerable<Student> GetStudentsMeal(int id);
     }
 }

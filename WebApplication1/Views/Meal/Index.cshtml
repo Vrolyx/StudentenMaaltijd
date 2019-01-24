@@ -1,0 +1,65 @@
+﻿@model IEnumerable<StudentenMaaltijd.Entity.Entity.Meal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               MaaltijdId
+            </th>
+            <th>
+                Maaltijd
+            </th>
+            <th>
+                Datum
+            </th>
+            <th>
+                Beschrijving
+            </th>
+            <th>
+                Maximaal aantal gasten
+            </th>
+            <th>
+                Prijs
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreperationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxAllowedGuests)
+            </td>
+            <td>
+                € @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MealId }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.MealId  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MealId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

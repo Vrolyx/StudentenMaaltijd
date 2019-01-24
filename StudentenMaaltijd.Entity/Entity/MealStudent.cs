@@ -6,6 +6,9 @@ namespace StudentenMaaltijd.Entity.Entity
 {
     public class MealStudent
     {
+        [Key]
+        public int MealStudentId { get; set; }
+
         public int StudentId { get; set; }
         public Student Student { get; set; }
 

@@ -4,33 +4,80 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StudentenMaaltijd.Entity.Entity;
+using StudentenMaaltijd.Entity.Repository;
 using StudentenMaaltijd.Web.Models;
-using StudentenMaaltijd.Web.Repository;
 
 namespace StudentenMaaltijd.Web.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class MealController : ControllerBase
+    public class MealController : Controller
     {
-        private readonly IMealRepository _repository;
+        private IMealRepository repository;
+        private MealDetailView mealDetailView;
 
-        public MealController(IMealRepository repository)
+        public MealController(IMealRepository repoService)
         {
-            _repository = repository;
+            repository = repoService;
         }
 
-        [HttpGet]
-        public IEnumerable<Meal> GetMealItems()
+        public ViewResult Index() =>
+            View(repository.GetMeals());
+
+        public ActionResult Create()
         {
-            return _repository.GetMeals();
+            return View();
         }
 
-        [HttpGet("{id}")]
-        public Meal GetMealById(int id)
+        [HttpPost]
+        public ActionResult Create(Meal meal)
         {
-            return _repository.GetMeal(id);
+            try
+            {
+                repository.AddMeal(meal);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Details(int id)
+        {
+            MealDetailView view = new MealDetailView(repository.GetMeal(id), repository.GetStudentsMeal(id));
+            return View(view);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View(repository.GetMeal(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Meal meal)
+        {
+            try
+            {
+                repository.EditMeal(meal);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                repository.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

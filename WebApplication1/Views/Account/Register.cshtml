@@ -1,0 +1,33 @@
+﻿@model StudentenMaaltijd.Entity.Entity.Identity.RegisterModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h3>Registreren: </h3>
+    <div class="panel-body row">
+        <form class="col-lg-12" asp-action="Register" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <p>
+                    <label asp-for="Name">Naam:</label>
+                    <input class="form-control" asp-for="Name" />
+                </p>
+                <p>
+                    <label asp-for="PhoneNumber">Telefoonnumer:</label>
+                    <input class="form-control" asp-for="PhoneNumber" />
+                </p>
+                <p>
+                    <label asp-for="Email">Email:</label>
+                    <input class="form-control" asp-for="Email" />
+                </p>
+                <p>
+                    <label asp-for="Password">Wachtwoord:</label>
+                    <input type="password" class="form-control" asp-for="Password" />
+                </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+
+        </form>
+    </div>
+</div>
